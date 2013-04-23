@@ -43,6 +43,10 @@ var methods = {
         }
 
         options.modal.css(options.showCss)
+    },
+    hide: function () {
+        var options = this.data('squadbox-options')
+        options.modal.css(options.hideCss)
     }
 }
 

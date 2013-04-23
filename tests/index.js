@@ -9,9 +9,10 @@ test('Existence', function() {
 test('Initialization', function () {
     var $el = $('<div />')
     var options = {
-        id: 'test-id',
         class: 'test-class',
-        content: '<p id="test-content">test content</p>'
+        content: '<p id="test-content">test content</p>',
+        id: 'test-id',
+        target: '#qunit-fixture'
     }
 
     ok($el.squadbox(), 'SquadBox initialization')
@@ -25,9 +26,9 @@ test('Initialization', function () {
 test('Showing', function () {
     var $el = $('<div />')
     var options = {
-        id: 'test-id',
         class: 'test-class',
         content: '<p id="test-content">test content</p>',
+        id: 'test-id',
         target: '#qunit-fixture'
     }
 
@@ -41,4 +42,21 @@ test('Showing', function () {
     $el.squadbox(options)
     $el.squadbox('show')
     ok($('#' + options.id).length, 'Creates the modal element')
+})
+
+test('Hiding', function () {
+    var $el = $('<div />')
+    var options = {
+        class: 'test-class',
+        content: '<p id="test-content">test content</p>',
+        id: 'test-id',
+        showCss: {opacity: 1},
+        hideCss: {opacity: 0},
+        target: '#qunit-fixture'
+    }
+
+    $el.squadbox(options)
+    $el.squadbox('show')
+    $el.squadbox('hide')
+    equal($('#' + options.id).css('opacity'), options.hideCss.opacity, 'Sets the CSS options defined to the hide method')
 })
