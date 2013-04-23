@@ -13,10 +13,9 @@ Then, call the ```'show'``` method for the modal. Below is an overview on how to
 ```JavaScript
 var $el = $('<div />')
 var options = {
-    class: 'test-class',
+    class: 'my-class',
     content: '<div class="modal">Put your stuff here!</div>',
-    id: 'test-id',
-    target: '#qunit-fixture'
+    id: 'my-id'
 }
 
 $el.squadbox(options)
