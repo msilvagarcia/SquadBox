@@ -46,7 +46,7 @@ var methods = {
         if (options.callback.create.length > 0) {
             var t = this
             $.each(options.callback.create, function (index, value) {
-                return value.apply(t, [index, value])
+                return value.apply(t, [index])
             })
         }
     },
@@ -70,7 +70,7 @@ var methods = {
         if (options.callback.show.length > 0) {
             var t = this
             $.each(options.callback.show, function (index, value) {
-                return value.apply(t, [index, value])
+                return value.apply(t, [index])
             })
         }
     },
@@ -88,7 +88,7 @@ var methods = {
         if (options.callback.hide.length > 0) {
             var t = this
             $.each(options.callback.hide, function (index, value) {
-                return value.apply(t, [index, value])
+                return value.apply(t, [index])
             })
         }
     }
