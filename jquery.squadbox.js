@@ -35,6 +35,9 @@ var methods = {
             return this
         }
 
+        if ( ! options || ! options.content)
+            $.error('There should be a content configuration defined')
+
         var $target = $(options.target)
         var $modal = $(options.content)
 
@@ -58,9 +61,6 @@ var methods = {
             this.data('squadbox-options', options)
             return this
         }
-
-        if ( ! options || ! options.content)
-            throw new Error('There should be a content configuration defined')
 
         if ( ! options.modal)
             methods.create.apply(this, [])
