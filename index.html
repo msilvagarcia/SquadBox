@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>Squadbox by msilvagarcia</title>
+  </head>
+
+  <body>
+    <div id="container">
+      <div class="inner">
+
+        <header>
+          <h1>Squadbox</h1>
+          <h2>A lean modal box</h2>
+        </header>
+
+        <section id="downloads" class="clearfix">
+          <a href="https://github.com/msilvagarcia/SquadBox/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
+          <a href="https://github.com/msilvagarcia/SquadBox/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
+          <a href="https://github.com/msilvagarcia/SquadBox" id="view-on-github" class="button"><span>View on GitHub</span></a>
+        </section>
+
+        <hr>
+
+        <section id="main_content">
+          <h1>SquadBox</h1>
+
+<p>A lean modal box</p>
+
+<h2>Usage</h2>
+
+<h3>Basic</h3>
+
+<p>You should assign an element to the modal. Usually, you'll attach it to the element firing the modal.</p>
+
+<p>Then, call the <code>'show'</code> method for the modal. Below is an overview on how to show the modal.</p>
+
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">$el</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'&lt;div /&gt;'</span><span class="p">)</span>
+<span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="kr">class</span><span class="o">:</span> <span class="s1">'my-class'</span><span class="p">,</span>
+    <span class="nx">content</span><span class="o">:</span> <span class="s1">'&lt;div class="modal"&gt;Put your stuff here!&lt;/div&gt;'</span><span class="p">,</span>
+    <span class="nx">id</span><span class="o">:</span> <span class="s1">'my-id'</span>
+<span class="p">}</span>
+
+<span class="nx">$el</span><span class="p">.</span><span class="nx">squadbox</span><span class="p">(</span><span class="nx">options</span><span class="p">)</span>
+<span class="nx">$el</span><span class="p">.</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nx">$el</span><span class="p">.</span><span class="nx">squadbox</span><span class="p">(</span><span class="s1">'show'</span><span class="p">)</span>
+<span class="p">})</span>
+</pre></div>
+
+<p>That's it! Customize it the way you like with CSS and you're done. Here's the full list of options:</p>
+
+<ul>
+<li>
+<code>target</code>: the selector for the container of the modal. Defaults to <code>'body'</code>
+</li>
+<li>
+<code>id</code>: a custom id attribute for the modal, so you can layout easier. Defaults to <code>'squadbox'</code>
+</li>
+<li>
+<code>class</code>: a custom class for the modal, so you can layout easier. Defaults to <code>'squadbox'</code>
+</li>
+<li>
+<code>content</code>: the content to show. This is a required attribute.</li>
+<li>
+<code>showCss</code>: an object with the custom CSS to set when calling the 'show' method. Defaults to <code>{opacity: 1}</code>
+</li>
+<li>
+<code>hideCss</code>: an object with the custom CSS to set when calling the 'hide' method. Defaults to <code>{opacity: 1}</code>
+</li>
+</ul><h3>Callbacks</h3>
+
+<p>If you want to add specific behaviors on some steps of the modal lifecycle, you can attach functions to some events. Like this:</p>
+
+<div class="highlight"><pre><span class="kd">function</span> <span class="nx">alertCallback</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'id'</span><span class="p">))</span>
+<span class="p">}</span>
+
+<span class="nx">$el</span><span class="p">.</span><span class="nx">squadbox</span><span class="p">(</span><span class="nx">options</span><span class="p">)</span>
+<span class="nx">$el</span><span class="p">.</span><span class="nx">squadbox</span><span class="p">(</span><span class="s1">'show'</span><span class="p">,</span> <span class="nx">alertCallback</span><span class="p">)</span>
+
+<span class="nx">$el</span><span class="p">.</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nx">$el</span><span class="p">.</span><span class="nx">squadbox</span><span class="p">(</span><span class="s1">'show'</span><span class="p">)</span>
+<span class="p">})</span>
+</pre></div>
+
+<p>This will pop an alert every time you <code>show</code> the modal. Here's the full list of handles:</p>
+
+<ul>
+<li>
+<code>create</code>: the moment the modal is created</li>
+<li>
+<code>show</code>: every moment the modal is shown</li>
+<li>
+<code>hide</code>: every moment the modal is hidden</li>
+</ul>
+        </section>
+
+        <footer>
+          Squadbox is maintained by <a href="https://github.com/msilvagarcia">msilvagarcia</a><br>
+          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="http://twitter.com/jasonlong">Jason Long</a>.
+        </footer>
+
+                  <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-40405410-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+      </div>
+    </div>
+  </body>
+</html>
