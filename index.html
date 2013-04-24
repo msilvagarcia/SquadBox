@@ -11,9 +11,13 @@
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
     <title>Squadbox by msilvagarcia</title>
+
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="javascripts/jquery.squadbox.js"></script>
+    <script type="text/javascript" src="javascripts/main.js"></script>
   </head>
 
-  <body>
+  <body onload="main(jQuery)">
     <div id="container">
       <div class="inner">
 
@@ -103,6 +107,14 @@
 <li>
 <code>hide</code>: every moment the modal is hidden</li>
 </ul>
+        </section>
+
+        <section id="demo" class="clearfix">
+            <h2>Demo</h2>
+
+            <button id="default-squadbox">Default</button>
+
+            <button id="callback-squadbox">Callbacks</button>
         </section>
 
         <footer>
