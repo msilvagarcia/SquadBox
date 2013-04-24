@@ -3,10 +3,15 @@
 var methods = {
     init: function (options) {
         var options = $.extend({
-            target: 'body',
+            callback: {
+                create: [],
+                hide: [],
+                show: []
+            },
             content: undefined,
+            hideCss: {opacity: 0},
             showCss: {opacity: 1},
-            hideCss: {opacity: 0}
+            target: 'body'
         }, options)
         
         this.data('squadbox-options', options)
@@ -21,28 +26,71 @@ var methods = {
         var newOptions = $.extend(oldOptions, options)
         this.data('squadbox-options', newOptions)
     },
-    show: function () {
+    create: function (callback) {
         var options = this.data('squadbox-options')
+
+        if (options && callback) {
+            options.callback.create.push(callback)
+            this.data('squadbox-options', options)
+            return this
+        }
+
+        var $target = $(options.target)
+        var $modal = $(options.content)
+
+        $target.append($modal)
+
+        options.modal = $modal
+        this.data('squadbox-options', options)
+
+        if (options.callback.create.length > 0) {
+            var t = this
+            $.each(options.callback.create, function (index, value) {
+                return value.apply(t, [index, value])
+            })
+        }
+    },
+    show: function (callback) {
+        var options = this.data('squadbox-options')
+
+        if (options && callback) {
+            options.callback.show.push(callback)
+            this.data('squadbox-options', options)
+            return this
+        }
+
         if ( ! options || ! options.content)
             throw new Error('There should be a content configuration defined')
 
-        var $target = $(options.target)
-        var $modal
-
-        if ( ! options.modal) {
-            var $modal = $(options.content)
-
-            $target.append($modal)
-
-            options.modal = $modal
-            this.data('squadbox-options', options)
-        }
+        if ( ! options.modal)
+            methods.create.apply(this, [])
 
         options.modal.css(options.showCss)
+
+        if (options.callback.show.length > 0) {
+            var t = this
+            $.each(options.callback.show, function (index, value) {
+                return value.apply(t, [index, value])
+            })
+        }
     },
-    hide: function () {
+    hide: function (callback) {
         var options = this.data('squadbox-options')
+
+        if (options && callback) {
+            options.callback.hide.push(callback)
+            this.data('squadbox-options', options)
+            return this
+        }
+
         options.modal.css(options.hideCss)
+
+        if (options.callback.hide.length > 0) {
+            var t = this
+            $.each(options.callback.hide, function (index, value) {
+                return value.apply(t, [index, value])
+            })
+        }
     }
 }
 
