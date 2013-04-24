@@ -39,6 +39,7 @@ var methods = {
             $.error('There should be a content configuration defined')
 
         var $target = $(options.target)
+        $target.css(options.hideCss)
         var $modal = $(options.content)
 
         $target.append($modal)
