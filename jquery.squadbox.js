@@ -4,8 +4,6 @@ var methods = {
     init: function (options) {
         var options = $.extend({
             target: 'body',
-            id: 'squadbox',
-            class: 'squadbox',
             content: undefined,
             showCss: {opacity: 1},
             hideCss: {opacity: 0}
@@ -33,8 +31,6 @@ var methods = {
 
         if ( ! options.modal) {
             var $modal = $(options.content)
-            $modal.attr('id', options.id)
-            $modal.addClass(options.class)
 
             $target.append($modal)
 
